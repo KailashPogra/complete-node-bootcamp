@@ -1,6 +1,7 @@
 
 const fs = require('fs');
 const http = require('http');
+const url = require('url');
 //////////////////////////////
 ////Files
 
@@ -32,10 +33,33 @@ const http = require('http');
 
 ///////////////////////////
 /////////Sarver
+const data = fs.readFileSync('1-node-farm/dev-data/data.json','utf-8');
+const productData = JSON.parse(data);
+console.log(data);
 const Sarver = http.createServer((req, res)=>{
-  res.end('jai shree ram');
+  const pathName = req.url;
+  
+  if (pathName=='/'||pathName=='/overview') {
+    res.end('jai shree ram');
+  }else if (pathName=='/product') {
+    res.end('this is a product');
+  }else if (pathName=='/api'){
+    res.writeHead(
+      200,
+      {
+        'Content-Type': 'application/json',
+    });
+    res.end(data);
+  }else{
+    res.writeHead(404,
+      {
+        'Content-Type': 'text/html',
+        'my-own-header': 'hello world',
+    });
+    res.end('<h1>page not found</h1>');
+  }
 });
-
+  
 Sarver.listen(8000,'127.0.0.1',()=>{
     console.log('Listning the request on 8000 port');
 })
