@@ -2,6 +2,7 @@
 const fs = require('fs');
 const http = require('http');
 const url = require('url');
+const slugify=require('slugify');
 //////////////////////////////
 ////Files
 
@@ -35,7 +36,10 @@ const url = require('url');
 /////////Sarver
 const data = fs.readFileSync('1-node-farm/dev-data/data.json','utf-8');
 const productData = JSON.parse(data);
-console.log(data);
+console.log("cc");
+
+const slug = productData.map(el=> slugify(el.productName,{lower:true}));
+console.log(slug);
 const Sarver = http.createServer((req, res)=>{
   const pathName = req.url;
   
