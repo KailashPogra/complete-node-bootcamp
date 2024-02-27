@@ -36,7 +36,7 @@ const slugify=require('slugify');
 /////////Sarver
 const data = fs.readFileSync('1-node-farm/dev-data/data.json','utf-8');
 const productData = JSON.parse(data);
-console.log("cc");
+console.log(data);
 
 const slug = productData.map(el=> slugify(el.productName,{lower:true}));
 console.log(slug);
