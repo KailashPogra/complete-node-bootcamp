@@ -4,7 +4,7 @@
   "description": "learning node.js",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon event.js"
+    "start": "nodemon streams.js"
   },
   "author": "kailash pogra",
   "license": "ISC",
